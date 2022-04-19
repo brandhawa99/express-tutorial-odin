@@ -15,18 +15,9 @@ var AuthorSchema = new Schema(
 
 //Virtual for author's full name
 
-AuthorSchema.virtual('name').get(()=>{
-    var fullName = '';
-    if(this.first_name && this.family_name){
-        fullName = this.family_name +", "+this.first_name; 
-    }
-    if(!this.first_name || !this.family_name){
-        fullName = '';
-    }
-    return fullName;
-});
 
-AuthorSchema.virtual('lifespan').get(()=>{
+
+AuthorSchema.virtual('lifespan').get(function(){
     var lifetime_string = '';
     if(this.date_of_birth){
         lifetime_string=this.date_of_birth.getYear().toString();
@@ -38,8 +29,21 @@ AuthorSchema.virtual('lifespan').get(()=>{
     return lifetime_string;
 })
 
-AuthorSchema.virtual('url').get(()=>{
+AuthorSchema.virtual('url').get(function(){
     return '/catalog/author/'+this._id;
+});
+
+AuthorSchema
+.virtual('name')
+.get(function (){
+    var fullName = '';
+    if(this.first_name && this.family_name){
+        fullName = this.family_name +", "+this.first_name; 
+    }
+    if(!this.first_name || !this.family_name){
+        fullName = '';
+    }
+    return fullName;
 });
 
 module.exports = mongoose.model('Author',AuthorSchema);;
