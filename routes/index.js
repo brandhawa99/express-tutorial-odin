@@ -3,7 +3,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Local Library' });
 });
+
+// GET home page.
+router.get('/', function(req, res) {
+  res.redirect('/catalog');
+});
+
 
 module.exports = router;
