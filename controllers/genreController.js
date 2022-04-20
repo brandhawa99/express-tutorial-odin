@@ -5,6 +5,7 @@ var Genre = require('../models/genre');
 exports.genre_list = function(req, res) {
 
     Genre.find()
+    .sort([['name', 'ascending']])
     .exec(function(err, list_genres){
         res.render('genre_list',{title:'Genre List', genre_list: list_genres});
     })
