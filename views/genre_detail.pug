@@ -7,3 +7,5 @@ block content
     each book in books  
         li
             a(href=book.url) #{book.title} by: #{book.author.name}
+    else
+        h3 there are no books in this genre
