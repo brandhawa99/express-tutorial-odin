@@ -3,9 +3,11 @@ extends layout
 
 block content 
     h1 Genre: #{title.name}
+    
     ul
-    each book in books  
-        li
-            a(href=book.url) #{book.title} by: #{book.author.name}
-    else
-        h3 there are no books in this genre
+        each book in books
+            li
+                a(href=book.url) #{book.title}
+                |  (#{book.author.name})
+        else 
+            h3 there are no books in this genre 
