@@ -12,8 +12,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 
-app.use(compression());
-app.use(helmet());
 
 
 var app = express();
@@ -24,6 +22,10 @@ var mongoDB = process.env.MONGODB_URI || dev_db_url
 mongoose.connect(mongoDB, { useNewUrlParser:true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+
+app.use(compression());
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
